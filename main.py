@@ -1,3 +1,4 @@
+# -*-coding:utf-8-*-
 from login import Login
 from send_gmail import send_gmail
 import time
