@@ -5,8 +5,11 @@ from getToken import get_token
 LOGIN_URL = 'https://face-reg.ecnu.edu.cn/api/v3/login/ecnu'
 REC_URL = 'https://anti-epidemic.ecnu.edu.cn/clock/mini/record'
 QRY_URL = 'https://anti-epidemic.ecnu.edu.cn/clock/mini/user/v2/'
+## 手动替换TOK_URL
+TOK_URL = 'https://anti-epidemic.ecnu.edu.cn/clock/mini/wx?open_key=xxxxxxxxx&iv=xxxxxxxx&data=xxxxxxx'
 UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat'
-MiniToken = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+MiniToken = ''
+unionId = 'xxxxxxxxxxxxxxxxxxxxxxxx'
 headers = {
     'Connection': 'keep-alive',
     'User-Agent': UA,
@@ -22,13 +25,16 @@ def Login(username, password):
     regData = {
         'number':username,
         'password':password,
-        "unionId":"AAAAAAAAAAAAAAAAAAAAAAAAA"
+        "unionId": unionId
     }
     r = s.post(LOGIN_URL, data = json.dumps(regData), headers= headers)
     j = json.loads(r.content)
-    print(j)
+    # print(j)
     portname = j['result']['name']
-
+    r = s.get(TOK_URL, headers= headers)
+    j = json.loads(r.content)
+    # print(j)
+    headers['MiniToken'] = j['message']
     postData = {
         'number': username,
         'location': '在上海不在校',
@@ -37,10 +43,11 @@ def Login(username, password):
         'token': get_token(portname, username)
     }
     print(postData)
+    print(headers['MiniToken'])
     r = s.put(REC_URL, data=json.dumps(postData), headers=headers)
     js = json.loads(r.content)
-    print(js)
+    # print(js)
     r = s.get(QRY_URL+username, headers=headers)
     j = json.loads(r.content)
     print(j)
-    return js['code'],js['message']
+    return js['code'], js['message']
