@@ -9,14 +9,16 @@ from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.header import Header
 
+import config
+
 # SMTP服务器,这里使用163邮箱
-mail_host = "smtp.163.com"
+mail_host = config.mail['host']
 # 发件人邮箱
-mail_sender = "xxxxxxxxxxxx@163.com"
+mail_sender = config.mail['sender']
 # 邮箱授权码,注意这里不是邮箱密码,如何获取邮箱授权码,请看本文最后教程
-mail_license = "WZSLFTFZUJEVLFWN"
+mail_license = config.mail['license']
 # 收件人邮箱，可以为多个收件人
-mail_receivers = ["xxxxxxxxxx@xx.com"]
+mail_receivers = [config.mail['receiver']]
 
 # mm = MIMEMultipart('related')
 #
@@ -70,15 +72,17 @@ mail_receivers = ["xxxxxxxxxx@xx.com"]
 # print("邮件发送成功")
 # # 关闭SMTP对象
 # stp.quit()
+
+
 def send_gmail(subj, text):
     mm = MIMEMultipart('related')
 
     # 邮件主题
     subject_content = subj
     # 设置发送者,注意严格遵守格式,里面邮箱为发件人邮箱
-    mm["From"] = "woria<%s>" % mail_sender
+    mm["From"] = f"{config.mail['username']}<{mail_sender}>"
     # 设置接受者,注意严格遵守格式,里面邮箱为接受者邮箱
-    mm["To"] = "<%s>" % mail_receivers[0]
+    mm["To"] = f"<{mail_receivers[0]}>"
     # 设置邮件主题
     mm["Subject"] = Header(subject_content, 'utf-8')
 
@@ -87,15 +91,18 @@ def send_gmail(subj, text):
     mm.attach(messege_text)
 
     # 创建SMTP对象
-    stp = smtplib.SMTP_SSL(mail_host,465)
+    stp = smtplib.SMTP_SSL(mail_host, 465)
     # set_debuglevel(1)可以打印出和SMTP服务器交互的所有信息
     stp.set_debuglevel(1)
 
-
     # 登录邮箱，传递参数1：邮箱地址，参数2：邮箱授权码
-    stp.login(mail_sender,mail_license)
+    stp.login(mail_sender, mail_license)
     # 发送邮件，传递参数1：发件人邮箱地址，参数2：收件人邮箱地址，参数3：把邮件内容格式改为str
     stp.sendmail(mail_sender, mail_receivers, mm.as_string())
     print("邮件发送成功")
     # 关闭SMTP对象
     stp.quit()
+
+
+if __name__ == '__main__':  # test
+    send_gmail("测试邮件", "正文正文")

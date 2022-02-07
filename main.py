@@ -1,12 +1,14 @@
 # -*-coding:utf-8-*-
-from login import Login
+from record import HealthRecord
 from send_gmail import send_gmail
 import time
+import datetime
 
 if __name__ == '__main__':
     rc = 0
+    print(datetime.datetime.now())  # log current time
     for t in range(10):
-        rc, msg = Login('101xxxxxxxx', 'xxxxxxxxx')
+        rc, msg = HealthRecord()
         if rc == 0:
             print("Success!")
             break

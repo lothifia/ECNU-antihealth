@@ -1,0 +1,26 @@
+# -*-coding:utf-8-*-
+user = {
+    'stuID': '10185xxxxxx',  # your student ID
+    'password': 'xxxxxxxxxxxx',  # password to login your student account
+    'unionID': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',  # unique ID for wx user, extract from Charles
+}
+
+open_key = 'xxxxxxxxxxxxxxxxxxxxx'  # extract from Charles
+
+# mail config for qq
+mail = {
+    'username': "ecnu_health",  # nickname
+    'host': "smtp.qq.com",  # SMTP服务器
+    'license': "xxxxxxxxxxxxx",  # 邮箱授权码（搜一搜就知道了）
+    'sender': "xxxxxxxxxx@qq.com",
+    'receiver': "xxxxxxxxxx@xx.com",
+}
+
+# mail config for 163
+# mail = {
+#     'username': "woria",  # nickname
+#     'host': "smtp.163.com",  # SMTP服务器
+#     'license': "XXXXXXXXXXXXXXX",  # 邮箱授权码
+#     'sender': "xxxxxxxxxxx@163.com",
+#     'receiver': "xxxxxxxx@xx.com",
+# }
