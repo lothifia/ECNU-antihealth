@@ -7,7 +7,7 @@ import datetime
 if __name__ == '__main__':
     rc = 0
     print(datetime.datetime.now())  # log current time
-    for t in range(10):
+    for t in range(3):
         rc, msg = HealthRecord()
         if rc == 0:
             print("Success!")
@@ -17,7 +17,7 @@ if __name__ == '__main__':
             print("打过了！")
             break
         else:
+            print(f"{rc=}, {msg=}")
             time.sleep(5)
-
-    if rc != 0 and msg != '今日已打卡':
+    else:  # no break in for, HealthRecord failed
         send_gmail("打卡失败gggg！！！", "TOKEN坏掉了")
