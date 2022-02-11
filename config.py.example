@@ -1,8 +1,9 @@
 # -*-coding:utf-8-*-
 user = {
     'stuID': '10185xxxxxx',  # your student ID
-    'password': 'xxxxxxxxxxxx',  # password to login your student account
-    'unionID': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',  # unique ID for wx user, extract from Charles
+    # password and unionID are not used for now
+    # 'password': 'xxxxxxxxxxxx',  # password to login your student account
+    # 'unionID': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',  # unique ID for wx user, extract from Charles
 }
 
 open_key = 'xxxxxxxxxxxxxxxxxxxxx'  # extract from Charles

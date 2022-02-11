@@ -20,11 +20,11 @@ s = requests.session()
 
 
 def HealthRecord():
-    regData = {
-        'number': config.user['stuID'],
-        'password': config.user['password'],
-        'unionId': config.user['unionID'],
-    }
+    # regData = {
+    #     'number': config.user['stuID'],
+    #     'password': config.user['password'],
+    #     'unionId': config.user['unionID'],
+    # }
     # login_req = s.post(LOGIN_URL, data=json.dumps(regData), headers=headers)
     # login_resp = json.loads(login_req.content)
     # print(f"{login_resp=}")
@@ -34,7 +34,7 @@ def HealthRecord():
     headers['MiniToken'] = tok_resp['message']
     postData = {
         'number': config.user['stuID'],
-        'location': '在上海不在校',
+        'location': '在上海不在校-上海市/上海市/普陀区',
         'health': '健康，未超过37.3',
         'recordTime': int(round(time.time() * 1000)),
         'token': get_token(
