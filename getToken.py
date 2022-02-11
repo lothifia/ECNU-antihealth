@@ -1,6 +1,6 @@
 # -*-coding:utf-8-*-
-import hashlib
+from hashlib import md5
 
 def get_token(port_name: str, port_number: str):
     string = port_name + port_number + 'ecnu1024'
-    return hashlib.md5(string.encode('utf-8')).hexdigest()
+    return md5(string.encode('utf-8')).hexdigest()

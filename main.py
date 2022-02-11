@@ -1,11 +1,13 @@
 # -*-coding:utf-8-*-
-from record import HealthRecord
-from send_gmail import send_gmail
 import time
 import datetime
 
+from delay import delay
+from record import HealthRecord
+from send_gmail import send_gmail
+
 if __name__ == '__main__':
-    rc = 0
+    delay()  # random delay
     print(datetime.datetime.now())  # log current time
     for t in range(3):
         rc, msg = HealthRecord()

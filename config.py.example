@@ -8,6 +8,12 @@ user = {
 
 open_key = 'xxxxxxxxxxxxxxxxxxxxx'  # extract from Charles
 
+# random record time between `begin` and `end`, unit: hour
+time_range = {
+    'begin': 7,
+    'end': 9,
+}
+
 # mail config for qq
 mail = {
     'username': "ecnu_health",  # nickname
